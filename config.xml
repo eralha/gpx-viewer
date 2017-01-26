@@ -60,9 +60,7 @@
     <!-- Locate the android platform -->
     <platform name="android">
         <preference name="AndroidLaunchMode" value="singleTask"/>
-        <!--
-           Add a new intent-filter node to the app activity :
-        -->
+
         <config-file target="AndroidManifest.xml" parent="./application/activity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
