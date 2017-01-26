@@ -39,7 +39,7 @@
     <!-- Ionic supports Android Jellybean and up --> 
     <preference name="android-minSdkVersion" value="16" />
 
-    <gap:plugin spec="https://github.com/mapsplugin/cordova-plugin-googlemaps" source="git">
+    <gap:plugin spec="https://github.com/mapsplugin/cordova-plugin-googlemaps#1.2.9" source="git">
         <param name="API_KEY_FOR_ANDROID" value="AIzaSyAYR2MKAXqIXE3gxVZ2MqJo4h3PPpI5PkQ" />
     </gap:plugin>
 
