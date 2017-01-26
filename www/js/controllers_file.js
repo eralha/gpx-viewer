@@ -30,8 +30,7 @@ appModule.controller('FilesCtrl', function($rootScope, $scope, $ionicPlatform, $
         }
 
         $scope.readFile = function(file) {
-          alert(file.fullPath);
-          alert(file.name);
+          alert(JSON.stringify(file));
           alert(cordova.file.applicationDirectory);
 
           window.resolveLocalFileSystemURL(file.fullPath, function(fileEntry){
