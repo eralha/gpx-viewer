@@ -175,4 +175,30 @@ angular.module('starter.controllers', [])
 
 .controller('AccountCtrl', function($scope, $rootScope) {
   $scope.settings = $rootScope.settings;
+
+  function readDownloadFolder(){
+    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0,
+        function (fs) {
+            fs.root.getDirectory("/Download", {
+                create : false,
+                exclusive : false
+            }, function (dirEntry) { //success
+                //do here what you need to do with Download folder
+                alert(JSON.stringify(dirEntry));
+            }, function () {
+                //error getDirectory
+            });
+        },
+        function () {
+        //error requestFileSystem
+        }
+    );
+  }
+
+
+  document.addEventListener("deviceready", function() {
+    readDownloadFolder();
+  }, false);//end device ready
+
+
 });

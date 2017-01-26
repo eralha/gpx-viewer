@@ -51,6 +51,8 @@
 
     <plugin name="cordova-plugin-insomnia" version="4.1.0" source="npm" />
 
+    <plugin name="org.apache.cordova.file" spec="https://github.com/apache/cordova-plugin-file" source="git" />
+
 
 </widget>
 
