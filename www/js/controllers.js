@@ -1,6 +1,12 @@
 angular.module('starter.controllers', [])
 
-.controller('DashCtrl', function($scope) {
+.controller('DashCtrl', function($scope, $rootScope) {
+
+  $rootScope.settings = {};
+  $rootScope.settings.followGPS = false;
+  $rootScope.settings.rotateMap = false;
+
+  $scope.settings = $rootScope.settings;
 
   var map;
   var currPosition;
@@ -46,9 +52,7 @@ angular.module('starter.controllers', [])
     map.addEventListener(plugin.google.maps.event.MAP_READY, onMapReady);
 
     map.on(plugin.google.maps.event.CAMERA_CHANGE, function(position){
-      zoom = position.zoom;
-      $scope.camera = position;
-      $scope.$apply();
+      //on camera change listener
     });
   }
 
@@ -59,20 +63,21 @@ angular.module('starter.controllers', [])
     }; // Update every 3 seconds
 
     var watchID = navigator.compass.watchHeading(function(heading){
-
-      if(map){
+      if(map && $rootScope.settings.rotateMap){
         map.moveCamera({
           'zoom' : zoom,
           'bearing': heading.magneticHeading
         });
       }
-
     }, function(){}, options);//end watch
-  }
+
+  }//end initCompassWatch
 
       document.addEventListener("deviceready", function() {
         
         initMap();
+        //keep device awake
+        window.plugins.insomnia.keepAwake();
 
       }, false);//end device ready
 
@@ -82,7 +87,12 @@ angular.module('starter.controllers', [])
           map.setCenter(currPosition);
           map.setZoom(zoom);
         }
+        if(map){
+          navigator.geolocation.getCurrentPosition(getGeolocation);
+        }
+      }//end centerMap
 
+      $scope.startFollow = function(){
         if(map){
           if(locationWatchID){
             navigator.geolocation.clearWatch(locationWatchID);
@@ -96,6 +106,12 @@ angular.module('starter.controllers', [])
           $scope.msg = 'watch started';
 
           locationWatchID = navigator.geolocation.watchPosition(function(position){
+            if($rootScope.settings.followGPS == false){
+              $scope.msg = 'watch called - not following gps';
+              $scope.$apply();
+              return;
+            }
+
             $scope.msg = '';
 
             getGeolocation(position);
@@ -107,7 +123,7 @@ angular.module('starter.controllers', [])
             $scope.msg = 'gps erro '+error.message;
             $scope.$apply();
           }, { timeout: 30000, enableHighAccuracy: true });
-        }
+        }//en if map
       }
 
       $scope.zoomIn = function(){
@@ -124,6 +140,10 @@ angular.module('starter.controllers', [])
         if(map){
           map.setZoom(zoom);
         }
+      }
+
+      $scope.rotateMap = function(){
+        $rootScope.settings.rotateMap = ($rootScope.settings.rotateMap) ? false : true;
       }
 
 })
@@ -147,8 +167,6 @@ angular.module('starter.controllers', [])
   $scope.chat = Chats.get($stateParams.chatId);
 })
 
-.controller('AccountCtrl', function($scope) {
-  $scope.settings = {
-    enableFriends: true
-  };
+.controller('AccountCtrl', function($scope, $rootScope) {
+  $scope.settings = $rootScope.settings;
 });

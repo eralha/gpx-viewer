@@ -49,6 +49,8 @@
     <plugin name="org.apache.cordova.geolocation" spec="https://github.com/apache/cordova-plugin-geolocation" source="git" />
     <plugin name="com.indigoway.cordova.whitelist.whitelistplugin" spec="https://github.com/Indigoway/cordova-plugin-whitelist" source="git" />
 
+    <plugin name="cordova-plugin-insomnia" version="4.1.0" source="npm" />
+
 
 </widget>
 

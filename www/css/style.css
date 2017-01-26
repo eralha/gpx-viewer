@@ -37,3 +37,5 @@
 	background-color: rgba(255, 255, 255, 0.7);
 }
 .bt-square:active { background-color: rgba(255, 255, 255, 1); }
+
+.bt-square.active { background-color: #e42313 !important; }

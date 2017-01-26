@@ -10,7 +10,8 @@
       <div class="c-buttons">
         <div class="bt-square"><i class="fa fa-plus" ng-click="zoomIn();"></i></div>
         <div class="bt-square"><i class="fa fa-minus" ng-click="zoomOut();"></i></div>
-        <div class="bt-square"><i class="fa fa-map-marker" ng-click="centerMap();"></i></div>
+        <div class="bt-square" ng-class="{'active' : settings.followGPS}"><i class="fa fa-map-marker" ng-click="centerMap();"></i></div>
+        <div class="bt-square" ng-class="{'active' : settings.rotateMap}"><i class="fa fa-compass" ng-click="rotateMap();"></i></div>
       </div>
 
     </div>
