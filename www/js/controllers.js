@@ -36,6 +36,11 @@ angular.module('starter.controllers', [])
     map = plugin.google.maps.Map.getMap(div);
     // Wait until the map is ready status.
     map.addEventListener(plugin.google.maps.event.MAP_READY, onMapReady);
+
+    map.on(plugin.google.maps.event.CAMERA_CHANGE, function(position){
+      $scope.camera = position;
+      $scope.$apply();
+    });
   }
 
 

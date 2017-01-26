@@ -8,6 +8,7 @@
       Emanuel Ralha
     </author>
     <content src="index.html" />
+
     <access origin="*" />
     
 
@@ -46,6 +47,7 @@
 
     <plugin name="org.apache.cordova.device-orientation" spec="https://github.com/apache/cordova-plugin-device-orientation" source="git" />
     <plugin name="org.apache.cordova.geolocation" spec="https://github.com/apache/cordova-plugin-geolocation" source="git" />
+    <plugin name="com.indigoway.cordova.whitelist.whitelistplugin" spec="https://github.com/Indigoway/cordova-plugin-whitelist" source="git" />
 
 
 </widget>
