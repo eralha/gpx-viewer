@@ -177,6 +177,7 @@ angular.module('starter.controllers', [])
   $scope.settings = $rootScope.settings;
 
   function readDownloadFolder(){
+    alert(window.requestFileSystem);
     window.requestFileSystem(LocalFileSystem.PERSISTENT, 0,
         function (fs) {
             fs.root.getDirectory("/Download", {
@@ -195,10 +196,8 @@ angular.module('starter.controllers', [])
     );
   }
 
-
   document.addEventListener("deviceready", function() {
     readDownloadFolder();
   }, false);//end device ready
-
 
 });
