@@ -4,11 +4,18 @@
 
     <ion-list>
         <div ng-repeat="file in files">
-            <a class="item item-icon-left" ng-click="getContents(file.nativeURL)">
-                <i ng-show="file.isDirectory" class="icon ion-folder"></i>
-                <i ng-show="file.isFile" class="icon ion-document"></i>
+
+            <a class="item item-icon-left" ng-click="getContents(file.nativeURL)" ng-if="file.isDirectory">
+                <i class="icon ion-folder"></i>
                 {{file.name}}
             </a>
+
+            <a class="item item-icon-left" ng-click="getContents(file.nativeURL)" ng-if="file.isFile">
+                <i class="icon ion-document"></i>
+                {{file.name}}
+                {{file | json}}
+            </a>
+
         </div>
     </ion-list>
 
