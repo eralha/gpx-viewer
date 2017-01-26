@@ -153,6 +153,31 @@ angular.module('starter.controllers', [])
         //keep device awake
         window.plugins.insomnia.keepAwake();
 
+        var HandleIntent = function (Intent) {
+             alert(Intent);
+             // With intent you'll do almost everything        
+
+             if(Intent.hasOwnProperty('data')){
+               // Do something with the File
+             }else{
+               // this will happen in getCordovaIntent when the app starts and there's no
+               // active intent
+               alert("The app was opened manually and there's not file to open");
+             }
+        };
+                
+        // Handle the intent when the app is open
+        // If the app is running in the background, this function
+        // will handle the opened file
+        window.plugins.intent.setNewIntentHandler(HandleIntent);
+
+        // Handle the intent when the app is not open
+        // This will be executed only when the app starts or wasn't active
+        // in the background
+        window.plugins.intent.getCordovaIntent(HandleIntent, function () {
+           alert("Error: Cannot handle open with file intent");
+        });
+
       }, false);//end device ready
 
 })
@@ -201,7 +226,8 @@ angular.module('starter.controllers', [])
             });
         }
 
-        $scope.getContents('file:///storage/emulated/0/Download');
+        $scope.getContents('file:///storage/emulated/0/');
+
     });
 
 

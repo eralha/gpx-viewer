@@ -53,6 +53,27 @@
     <plugin name="cordova-plugin-insomnia" version="4.1.0" source="npm" />
 
     <plugin name="org.apache.cordova.file" spec="https://github.com/apache/cordova-plugin-file" source="git" />
+    <plugin name="com.napolitano.cordova.plugin.intent" spec="https://github.com/napolitano/cordova-plugin-intent" source="git" />
+
+
+    <!-- Locate the android platform -->
+    <platform name="android">
+        <preference name="AndroidLaunchMode" value="singleTask"/>
+        <!--
+           Add a new intent-filter node to the app activity :
+        -->
+        <config-file target="AndroidManifest.xml" parent="./application/activity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <action android:name="android.intent.action.SEND" />
+                <data android:scheme="file" />
+                <data android:mimeType="*/*" />
+                <data android:pathPattern=".*\\.gpx" />
+            </intent-filter>
+        </config-file>
+    </platform>
 
 
 </widget>
