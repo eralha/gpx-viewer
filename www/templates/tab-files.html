@@ -9,7 +9,7 @@
                 {{file.name}}
             </a>
 
-            <a class="item item-icon-left" ng-click="readFile(file)" ng-if="file.isFile">
+            <a class="item item-icon-left" ng-click="readFile(file)" ng-if="file.isFile && isGPX(file)">
                 <i class="icon ion-document"></i>
                 {{file.name}}
             </a>

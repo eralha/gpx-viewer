@@ -25,8 +25,12 @@ appModule.controller('FilesCtrl', function($rootScope, $scope, $ionicPlatform, $
             });
         }
 
+        $scope.isGPX = function(file) {
+          return (String(file.name).indexOf('.gpx')) ? true : false;
+        }
+
         $scope.readFile = function(file) {
-          alert(file.fullPath);
+          alert(file);
             var reader = new FileReader();
 
             reader.onloadend = function() {
