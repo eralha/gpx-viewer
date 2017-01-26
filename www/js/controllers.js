@@ -182,13 +182,13 @@ angular.module('starter.controllers', [])
   var fs = new $fileFactory();
 
     $ionicPlatform.ready(function() {
-      alert(LocalFileSystem.PERSISTENT);
+        /*
         fs.getEntriesAtRoot().then(function(result) {
             $scope.files = result;
-            alert(result);
         }, function(error) {
             console.error(error);
         });
+        */
 
         $scope.getContents = function(path) {
             fs.getEntries(path).then(function(result) {
@@ -200,6 +200,8 @@ angular.module('starter.controllers', [])
                 });
             });
         }
+
+        $scope.getContents('/storage/');
     });
 
 
@@ -229,13 +231,14 @@ angular.module('starter.controllers', [])
         getEntriesAtRoot: function() {
             var deferred = $q.defer();
             window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem) {
-                alert(fileSystem.name);
+
                 var directoryReader = fileSystem.root.createReader();
                 directoryReader.readEntries(function(entries) {
                     deferred.resolve(entries);
                 }, function(error) {
                     deferred.reject(error);
                 });
+
             }, function(error) {
                 deferred.reject(error);
             });
