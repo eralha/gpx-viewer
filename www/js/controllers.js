@@ -173,7 +173,7 @@ angular.module('starter.controllers', [])
   $scope.chat = Chats.get($stateParams.chatId);
 })
 
-.controller('AccountCtrl', function($scope, $ionicPlatform, $fileFactory) {
+.controller('AccountCtrl', function($rootScope, $scope, $ionicPlatform, $fileFactory) {
   $scope.settings = $rootScope.settings;
 
   var fs = new $fileFactory();
