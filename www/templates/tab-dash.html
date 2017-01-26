@@ -1,6 +1,12 @@
 <ion-view view-title="Dashboard">
   <ion-content class="padding">
     
+    <div class="c-buttons">
+      <div class="bt-square"><i class="fa fa-plus" ng-click="zoomIn();"></i></div>
+      <div class="bt-square"><i class="fa fa-minus" ng-click="zoomOut();"></i></div>
+      <div class="bt-square"><i class="fa fa-map-marker" ng-click="centerMap();"></i></div>
+    </div>
+
     <div class="c-map__canvas" id="map_canvas"></div>
 
   </ion-content>

@@ -3,41 +3,82 @@ angular.module('starter.controllers', [])
 .controller('DashCtrl', function($scope) {
 
   var map;
+  var currPosition;
+  var currPosiMarker;
+  var zoom = 13;
+
+  function getGeolocation(position){
+    var currPosition = new plugin.google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+      if(!currPosiMarker){
+        map.addMarker({
+          'position': currPosition,
+          'title': "Hello GoogleMap for Cordova!"
+        }, function(marker) {
+          currPosiMarker = marker;
+        });
+      }else{
+        currPosiMarker.setPosition(currPosition);
+      }
+
+      map.setCenter(currPosition);
+  }//end getGeolocation;
+
+
+  function onMapReady() {
+    navigator.geolocation.getCurrentPosition(getGeolocation);
+    initCompassWatch();
+  }//end onMapReady
+
+
+  function initMap(){
+    var div = document.getElementById("map_canvas");
+    // Initialize the map view
+    map = plugin.google.maps.Map.getMap(div);
+    // Wait until the map is ready status.
+    map.addEventListener(plugin.google.maps.event.MAP_READY, onMapReady);
+  }
+
+
+  function initCompassWatch(){
+    var options = {
+        frequency: 500
+    }; // Update every 3 seconds
+
+    var watchID = navigator.compass.watchHeading(function(heading){
+
+      $scope.heading = heading;
+      $scope.$apply();
+
+      if(map){
+        map.moveCamera({
+          'bearing': heading.magneticHeading,
+          'zoom': zoom,
+          'duration': 0
+        });
+      }
+
+    }, function(){}, options);//end watch
+  }
 
       document.addEventListener("deviceready", function() {
-        var div = document.getElementById("map_canvas");
-
-        // Initialize the map view
-        map = plugin.google.maps.Map.getMap(div);
-
-        // Wait until the map is ready status.
-        map.addEventListener(plugin.google.maps.event.MAP_READY, onMapReady);
-
-        var options = {
-            frequency: 500
-        }; // Update every 3 seconds
-
-        var watchID = navigator.compass.watchHeading(function(heading){
-
-          $scope.heading = heading;
-          $scope.$apply();
-
-          map.animateCamera({
-            'bearing': heading.magneticHeading,
-            'zoom': 16,
-            'duration': 0
-          });
-
-        }, function(){}, options);
+        
+        initMap();
 
       }, false);//end device ready
 
-      function onMapReady() {
 
-      }//end onMapReady
+      $scope.centerMap = function(){
+        if(map){
+          navigator.geolocation.getCurrentPosition(getGeolocation);
+        }
+      }
 
-      function readCompass(){
+      $scope.zoomIn = function(){
+        zoom ++;
+      }
 
+      $scope.zoomOut = function(){
+        zoom --;
       }
 
 })

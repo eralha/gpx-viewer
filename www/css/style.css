@@ -17,3 +17,23 @@
 	background-color: #000;
 	color: #fff;
 }
+
+.c-buttons {
+	position: absolute;
+	z-index: 100;
+	top: 5px;
+	right: 5px;
+}
+
+.bt-square {
+	width: 35px;
+	height: 35px;
+	line-height: 35px;
+	vertical-align: middle;
+	margin-bottom: 5px;
+	font-size: 18px;
+	color: #000;
+	text-align: center;
+	background-color: rgba(255, 255, 255, 0.7);
+}
+.bt-square:active { background-color: rgba(255, 255, 255, 1); }

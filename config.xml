@@ -45,6 +45,7 @@
 
 
     <plugin name="org.apache.cordova.device-orientation" spec="https://github.com/apache/cordova-plugin-device-orientation" source="git" />
+    <plugin name="org.apache.cordova.geolocation" spec="https://github.com/apache/cordova-plugin-geolocation" source="git" />
 
 
 </widget>
