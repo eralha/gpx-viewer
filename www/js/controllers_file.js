@@ -26,6 +26,7 @@ appModule.controller('FilesCtrl', function($rootScope, $scope, $ionicPlatform, $
         }
 
         $scope.readFile = function(file) {
+          alert(file.fullPath);
             var reader = new FileReader();
 
             reader.onloadend = function() {
@@ -33,6 +34,8 @@ appModule.controller('FilesCtrl', function($rootScope, $scope, $ionicPlatform, $
             };
 
             reader.readAsText(file);
+
+            alert(file.name);
         }
 
         //$scope.getContents('file:///storage/emulated/0/');
