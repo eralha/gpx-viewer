@@ -30,7 +30,7 @@ appModule.controller('FilesCtrl', function($rootScope, $scope, $ionicPlatform, $
         }
 
         $scope.readFile = function(file) {
-          alert(file);
+          alert(file.fullPath);
             var reader = new FileReader();
 
             reader.onloadend = function() {
