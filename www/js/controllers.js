@@ -21,31 +21,12 @@ angular.module('starter.controllers', [])
       }
 
       map.setCenter(currPosition);
+      map.setZoom(zoom);
   }//end getGeolocation;
 
 
   function onMapReady() {
-    // onSuccess Callback
-    //   This method accepts a `Position` object, which contains
-    //   the current GPS coordinates
-    //
-    function onSuccess(position) {
-        var element = document.getElementById('geolocation');
-        element.innerHTML = 'Latitude: '  + position.coords.latitude      + '<br />' +
-                            'Longitude: ' + position.coords.longitude     + '<br />' +
-                            '<hr />'      + element.innerHTML;
-    }
-
-    // onError Callback receives a PositionError object
-    //
-    function onError(error) {
-        alert('code: '    + error.code    + '\n' +
-              'message: ' + error.message + '\n');
-    }
-
-    // Options: throw an error if no update is received every 30 seconds.
-    //
-    var watchID = navigator.geolocation.watchPosition(onSuccess, null, { timeout: 500 });
+    //var watchID = navigator.geolocation.watchPosition(getGeolocation, null, { timeout: 500 });
 
     navigator.geolocation.getCurrentPosition(getGeolocation);
     initCompassWatch();
@@ -91,6 +72,7 @@ angular.module('starter.controllers', [])
 
 
       $scope.centerMap = function(){
+        if(currPosition){ map.setCenter(currPosition); }
         if(map){
           navigator.geolocation.getCurrentPosition(getGeolocation);
         }
