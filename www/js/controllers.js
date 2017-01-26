@@ -23,7 +23,8 @@ angular.module('starter.controllers', [])
           $scope.$apply();
 
           map.animateCamera({
-            'bearing': heading.magneticHeading
+            'bearing': heading.magneticHeading,
+            'duration': 0
           });
 
         }, function(){}, options);
