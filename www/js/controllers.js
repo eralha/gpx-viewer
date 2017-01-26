@@ -10,6 +10,7 @@ angular.module('starter.controllers', [])
 
   function getGeolocation(position){
     var currPosition = new plugin.google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+
       if(!currPosiMarker){
         map.addMarker({
           'position': currPosition,
@@ -94,7 +95,15 @@ angular.module('starter.controllers', [])
 
           $scope.msg = 'watch started';
 
-          locationWatchID = navigator.geolocation.watchPosition(getGeolocation, function(error){
+          locationWatchID = navigator.geolocation.watchPosition(function(position){
+            $scope.msg = '';
+
+            getGeolocation(position);
+
+            $scope.msg = $scope.msg+' - watch called';
+            $scope.$apply();
+
+          }, function(error){
             $scope.msg = 'gps erro '+error.message;
             $scope.$apply();
           }, { timeout: 30000, enableHighAccuracy: true });
