@@ -1,4 +1,4 @@
-<ion-view view-title="Account">
+<ion-view view-title="Settings">
   <ion-content>
 
     <ion-list>
@@ -9,18 +9,6 @@
 	        Rotate map
 	    </ion-toggle>
     </ion-list>
-
-
-    <ion-list>
-        <div ng-repeat="file in files">
-            <a class="item item-icon-left" ng-click="getContents(file.nativeURL)">
-                <i ng-show="file.isDirectory" class="icon ion-folder"></i>
-                <i ng-show="file.isFile" class="icon ion-document"></i>
-                {{file.name}}
-            </a>
-        </div>
-    </ion-list>
-
 
   </ion-content>
 </ion-view>
