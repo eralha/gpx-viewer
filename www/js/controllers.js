@@ -6,6 +6,7 @@ angular.module('starter.controllers', [])
   var currPosition;
   var currPosiMarker;
   var zoom = 13;
+  var locationWatchID;
 
   function getGeolocation(position){
     var currPosition = new plugin.google.maps.LatLng(position.coords.latitude, position.coords.longitude);
@@ -57,6 +58,7 @@ angular.module('starter.controllers', [])
 
       if(map){
         map.moveCamera({
+          'zoom' : zoom,
           'bearing': heading.magneticHeading
         });
       }
@@ -72,9 +74,18 @@ angular.module('starter.controllers', [])
 
 
       $scope.centerMap = function(){
-        if(currPosition){ map.setCenter(currPosition); }
+        if(currPosition){ 
+          map.setCenter(currPosition);
+          map.setZoom(zoom);
+        }
+
         if(map){
-          navigator.geolocation.getCurrentPosition(getGeolocation);
+          if(locationWatchID){
+            navigator.geolocation.clearWatch(locationWatchID);
+            locationWatchID = null;
+            return;
+          }
+          locationWatchID = navigator.geolocation.watchPosition(getGeolocation, null, { timeout: 500 });
         }
       }
 
