@@ -32,15 +32,19 @@ appModule.controller('FilesCtrl', function($rootScope, $scope, $ionicPlatform, $
         $scope.readFile = function(file) {
           alert(file.fullPath);
           alert(file.name);
-            var reader = new FileReader();
+          alert(cordova.file.applicationDirectory);
 
-            reader.onloadend = function() {
-                alert("Successful file read: " + this.result);
-            };
+          window.resolveLocalFileSystemURL(file.fullPath, function(fileEntry){
+            fileEntry.file(function(file) {
+                var reader = new FileReader();
 
-            reader.readAsText(file);
+                reader.onloadend = function(e) {
+                    alert("Text is: "+this.result);
+                }
 
-            alert(file.name);
+                reader.readAsText(file);
+            });
+          });
         }
 
         //$scope.getContents('file:///storage/emulated/0/');
