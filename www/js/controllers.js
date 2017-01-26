@@ -192,6 +192,7 @@ angular.module('starter.controllers', [])
 
         $scope.getContents = function(path) {
             fs.getEntries(path).then(function(result) {
+              alert(result);
                 $scope.files = result;
                 $scope.files.unshift({name: "[parent]"});
                 fs.getParentDirectory(path).then(function(result) {
