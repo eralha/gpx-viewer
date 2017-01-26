@@ -25,6 +25,16 @@ appModule.controller('FilesCtrl', function($rootScope, $scope, $ionicPlatform, $
             });
         }
 
+        $scope.readFile = function(file) {
+            var reader = new FileReader();
+
+            reader.onloadend = function() {
+                alert("Successful file read: " + this.result);
+            };
+
+            reader.readAsText(file);
+        }
+
         //$scope.getContents('file:///storage/emulated/0/');
 
     });

@@ -154,7 +154,7 @@ var appModule = angular.module('starter.controllers', [])
         window.plugins.insomnia.keepAwake();
 
         var HandleIntent = function (Intent) {
-             alert(Intent);
+             //alert(Intent);
              // With intent you'll do almost everything        
 
              if(Intent.hasOwnProperty('data')){
@@ -162,7 +162,7 @@ var appModule = angular.module('starter.controllers', [])
              }else{
                // this will happen in getCordovaIntent when the app starts and there's no
                // active intent
-               alert("The app was opened manually and there's not file to open");
+               //alert("The app was opened manually and there's not file to open");
              }
         };
                 
@@ -175,7 +175,7 @@ var appModule = angular.module('starter.controllers', [])
         // This will be executed only when the app starts or wasn't active
         // in the background
         window.plugins.intent.getCordovaIntent(HandleIntent, function () {
-           alert("Error: Cannot handle open with file intent");
+           //alert("Error: Cannot handle open with file intent");
         });
 
       }, false);//end device ready
