@@ -3,6 +3,7 @@ angular.module('starter.controllers', [])
 .controller('DashCtrl', function($scope) {
 
   var map;
+
       document.addEventListener("deviceready", function() {
         var div = document.getElementById("map_canvas");
 
@@ -11,46 +12,27 @@ angular.module('starter.controllers', [])
 
         // Wait until the map is ready status.
         map.addEventListener(plugin.google.maps.event.MAP_READY, onMapReady);
-      }, false);
+
+        var options = {
+            frequency: 500
+        }; // Update every 3 seconds
+
+        var watchID = navigator.compass.watchHeading(function(heading){
+
+          $scope.heading = heading;
+          $scope.$apply();
+
+        }, function(){}, options);
+
+      }, false);//end device ready
 
       function onMapReady() {
-        var button = document.getElementById("button");
-        button.addEventListener("click", onBtnClicked);
+
       }//end onMapReady
 
-      function onBtnClicked() {
+      function readCompass(){
 
-        // Move to the position with animation
-        map.animateCamera({
-          target: {lat: 37.422359, lng: -122.084344},
-          zoom: 17,
-          tilt: 60,
-          bearing: 140,
-          duration: 5000
-        }, function() {
-
-          // Add a maker
-          map.addMarker({
-            position: {lat: 37.422359, lng: -122.084344},
-            title: "Welecome to \n" +
-                   "Cordova GoogleMaps plugin for iOS and Android",
-            snippet: "This plugin is awesome!",
-            animation: plugin.google.maps.Animation.BOUNCE
-          }, function(marker) {
-
-            // Show the info window
-            marker.showInfoWindow();
-
-            // Catch the click event
-            marker.on(plugin.google.maps.event.INFO_CLICK, function() {
-
-              // To do something...
-              alert("Hello world!");
-
-            });
-          });
-        });
-      }//end onBtnClicked
+      }
 
 })
 

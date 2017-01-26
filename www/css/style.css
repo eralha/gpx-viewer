@@ -7,3 +7,13 @@
 	height: 100%;
 	background-color: #f00;
 }
+
+.c-compass {
+	position: absolute;
+	z-index: 100;
+	width: 100%;
+	height: 50px;
+	font-size: 12px;
+	background-color: #000;
+	color: #fff;
+}

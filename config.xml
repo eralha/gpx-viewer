@@ -44,6 +44,9 @@
     </gap:plugin>
 
 
+    <plugin name="org.apache.cordova.device-orientation" spec="https://github.com/apache/cordova-plugin-device-orientation" source="git" />
+
+
 </widget>
 
 
