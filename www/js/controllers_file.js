@@ -26,14 +26,14 @@ appModule.controller('FilesCtrl', function($rootScope, $scope, $ionicPlatform, $
         }
 
         $scope.isGPX = function(file) {
-          return (String(file.name).indexOf('.gpx')) ? true : false;
+          return (String(file.name).indexOf('.gpx') != -1) ? true : false;
         }
 
         $scope.readFile = function(file) {
           alert(JSON.stringify(file));
           alert(cordova.file.applicationDirectory);
 
-          window.resolveLocalFileSystemURL(file.fullPath, function(fileEntry){
+          window.resolveLocalFileSystemURL(file.nativeURL, function(fileEntry){
             fileEntry.file(function(file) {
                 var reader = new FileReader();
 
