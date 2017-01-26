@@ -9,11 +9,32 @@
     </author>
     <content src="index.html" />
     <access origin="*" />
-    <preference name="webviewbounce" value="false" />
-    <preference name="UIWebViewBounce" value="false" />
-    <preference name="DisallowOverscroll" value="true" />
-    <preference name="SplashScreenDelay" value="2000" />
-    <preference name="FadeSplashScreenDuration" value="2000"/>
+    
+
+    <preference name="permissions" value="none" />
+    <preference name='phonegap-version' value='cli-5.2.0' />
+    <preference name="orientation" value="portrait" />
+    <preference name="fullscreen" value="false" />
+    <preference name="stay-in-webview" value="false" />
+    <preference name="show-splash-screen-spinner" value="false" />
+    <preference name="auto-hide-splash-screen" value="true" />
+    <preference name="disable-cursor" value="false" />
+
+    <!-- ANDROID -->
+    <preference name="android-minSdkVersion" value="14" />
+    <preference name="android-installLocation" value="auto" />
+
+    <!-- IOS -->
+    <preference name="detect-data-types" value="true" />
+    <preference name="exit-on-suspend" value="true" />
+    <preference name="prerendered-icon" value="true" />
+    <preference name="ios-statusbarstyle" value="black-opaque" />
+    <preference name="target-device" value="handset" />
+    <preference name="webviewbounce" value="false"/>
+    <preference name="UIWebViewBounce" value="false"/>
+    <preference name="DisallowOverscroll" value="true"/>
+    <preference name="BackupWebStorage" value="none"/>
+    
     
     <!-- Ionic supports Android Jellybean and up --> 
     <preference name="android-minSdkVersion" value="16" />
@@ -22,12 +43,8 @@
         <param name="API_KEY_FOR_ANDROID" value="AIzaSyAYR2MKAXqIXE3gxVZ2MqJo4h3PPpI5PkQ" />
     </gap:plugin>
 
-    <!-- Don't store local data in an iCloud backup. Turn this to "cloud" to enable storage 
-         to be sent to iCloud. Note: enabling this could result in Apple rejecting your app.
-    -->
-    <preference name="BackupWebStorage" value="none" />
 
-    <feature name="StatusBar">
-      <param name="ios-package" value="CDVStatusBar" onload="true" />
-    </feature>
 </widget>
+
+
+
