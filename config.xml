@@ -24,6 +24,7 @@
     <!-- ANDROID -->
     <preference name="android-minSdkVersion" value="14" />
     <preference name="android-installLocation" value="auto" />
+    <preference name="AndroidExtraFilesystems" value="files,files-external,documents,sdcard,cache,cache-external,assets,root" />
 
     <!-- IOS -->
     <preference name="detect-data-types" value="true" />
