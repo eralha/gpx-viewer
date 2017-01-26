@@ -53,6 +53,9 @@ angular.module('starter.controllers', [])
 
     map.on(plugin.google.maps.event.CAMERA_CHANGE, function(position){
       //on camera change listener
+      if($rootScope.settings.rotateMap == false){
+        zoom = position.zoom;
+      }
     });
   }
 
@@ -179,6 +182,7 @@ angular.module('starter.controllers', [])
   var fs = new $fileFactory();
 
     $ionicPlatform.ready(function() {
+      alert(LocalFileSystem.PERSISTENT);
         fs.getEntriesAtRoot().then(function(result) {
             $scope.files = result;
             alert(result);
