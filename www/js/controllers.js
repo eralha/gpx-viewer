@@ -202,7 +202,7 @@ angular.module('starter.controllers', [])
             });
         }
 
-        $scope.getContents('/storage/');
+        $scope.getContents('file:///storage/');
     });
 
 
