@@ -207,13 +207,13 @@ angular.module('starter.controllers', [])
   var fs = new $fileFactory();
 
     $ionicPlatform.ready(function() {
-        /*
+        
         fs.getEntriesAtRoot().then(function(result) {
             $scope.files = result;
         }, function(error) {
             console.error(error);
         });
-        */
+        
 
         $scope.getContents = function(path) {
             fs.getEntries(path).then(function(result) {
@@ -226,7 +226,7 @@ angular.module('starter.controllers', [])
             });
         }
 
-        $scope.getContents('file:///storage/emulated/0/');
+        //$scope.getContents('file:///storage/emulated/0/');
 
     });
 

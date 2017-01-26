@@ -37,6 +37,7 @@
     <preference name="UIWebViewBounce" value="false"/>
     <preference name="DisallowOverscroll" value="true"/>
     <preference name="BackupWebStorage" value="none"/>
+    <preference name="AndroidLaunchMode" value="singleTask"/>
 
     
     <!-- Ionic supports Android Jellybean and up --> 
@@ -59,7 +60,7 @@
 
     <!-- Locate the android platform -->
     <platform name="android">
-        <preference name="AndroidLaunchMode" value="singleTask"/>
+        
 
         <config-file target="AndroidManifest.xml" parent="./application/activity">
             <intent-filter>
