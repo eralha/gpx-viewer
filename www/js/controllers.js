@@ -24,6 +24,7 @@ angular.module('starter.controllers', [])
 
           map.animateCamera({
             'bearing': heading.magneticHeading,
+            'zoom': 16,
             'duration': 0
           });
 
