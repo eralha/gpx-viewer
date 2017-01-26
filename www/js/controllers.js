@@ -97,7 +97,7 @@ angular.module('starter.controllers', [])
           locationWatchID = navigator.geolocation.watchPosition(getGeolocation, function(error){
             $scope.msg = 'gps erro '+error.message;
             $scope.$apply();
-          }, { timeout: 500 });
+          }, { timeout: 30000, enableHighAccuracy: true });
         }
       }
 
