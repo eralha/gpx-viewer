@@ -56,9 +56,7 @@ angular.module('starter.controllers', [])
 
       if(map){
         map.moveCamera({
-          'bearing': heading.magneticHeading,
-          'zoom': zoom,
-          'duration': 0
+          'bearing': heading.magneticHeading
         });
       }
 
@@ -80,10 +78,16 @@ angular.module('starter.controllers', [])
 
       $scope.zoomIn = function(){
         zoom ++;
+        if(map){
+          map.setZoom(zoom);
+        }
       }
 
       $scope.zoomOut = function(){
         zoom --;
+        if(map){
+          map.setZoom(zoom);
+        }
       }
 
 })

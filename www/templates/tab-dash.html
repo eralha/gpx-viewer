@@ -3,13 +3,17 @@
 
     <div class="c-compass">{{camera | json}}</div>
     
-    <div class="c-buttons">
-      <div class="bt-square"><i class="fa fa-plus" ng-click="zoomIn();"></i></div>
-      <div class="bt-square"><i class="fa fa-minus" ng-click="zoomOut();"></i></div>
-      <div class="bt-square"><i class="fa fa-map-marker" ng-click="centerMap();"></i></div>
-    </div>
+    
 
-    <div class="c-map__canvas" id="map_canvas"></div>
+    <div class="c-map__canvas" id="map_canvas">
+      
+      <div class="c-buttons">
+        <div class="bt-square"><i class="fa fa-plus" ng-click="zoomIn();"></i></div>
+        <div class="bt-square"><i class="fa fa-minus" ng-click="zoomOut();"></i></div>
+        <div class="bt-square"><i class="fa fa-map-marker" ng-click="centerMap();"></i></div>
+      </div>
+
+    </div>
 
   </ion-content>
 </ion-view>
