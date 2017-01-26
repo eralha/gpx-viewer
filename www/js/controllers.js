@@ -22,6 +22,10 @@ angular.module('starter.controllers', [])
           $scope.heading = heading;
           $scope.$apply();
 
+          map.animateCamera({
+            'bearing': heading.magneticHeading
+          });
+
         }, function(){}, options);
 
       }, false);//end device ready
