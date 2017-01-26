@@ -25,6 +25,28 @@ angular.module('starter.controllers', [])
 
 
   function onMapReady() {
+    // onSuccess Callback
+    //   This method accepts a `Position` object, which contains
+    //   the current GPS coordinates
+    //
+    function onSuccess(position) {
+        var element = document.getElementById('geolocation');
+        element.innerHTML = 'Latitude: '  + position.coords.latitude      + '<br />' +
+                            'Longitude: ' + position.coords.longitude     + '<br />' +
+                            '<hr />'      + element.innerHTML;
+    }
+
+    // onError Callback receives a PositionError object
+    //
+    function onError(error) {
+        alert('code: '    + error.code    + '\n' +
+              'message: ' + error.message + '\n');
+    }
+
+    // Options: throw an error if no update is received every 30 seconds.
+    //
+    var watchID = navigator.geolocation.watchPosition(onSuccess, null, { timeout: 500 });
+
     navigator.geolocation.getCurrentPosition(getGeolocation);
     initCompassWatch();
   }//end onMapReady
@@ -38,6 +60,7 @@ angular.module('starter.controllers', [])
     map.addEventListener(plugin.google.maps.event.MAP_READY, onMapReady);
 
     map.on(plugin.google.maps.event.CAMERA_CHANGE, function(position){
+      zoom = position.zoom;
       $scope.camera = position;
       $scope.$apply();
     });
@@ -50,9 +73,6 @@ angular.module('starter.controllers', [])
     }; // Update every 3 seconds
 
     var watchID = navigator.compass.watchHeading(function(heading){
-
-      $scope.heading = heading;
-      $scope.$apply();
 
       if(map){
         map.moveCamera({
@@ -78,6 +98,7 @@ angular.module('starter.controllers', [])
 
       $scope.zoomIn = function(){
         zoom ++;
+        zoom = (zoom > 19)? 19 : zoom;
         if(map){
           map.setZoom(zoom);
         }
@@ -85,6 +106,7 @@ angular.module('starter.controllers', [])
 
       $scope.zoomOut = function(){
         zoom --;
+        zoom = (zoom < 3)? 3 : zoom;
         if(map){
           map.setZoom(zoom);
         }
