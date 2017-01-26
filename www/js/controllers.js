@@ -153,31 +153,34 @@ var appModule = angular.module('starter.controllers', [])
         //keep device awake
         window.plugins.insomnia.keepAwake();
 
-        var HandleIntent = function (Intent) {
-             //alert(Intent);
-             // With intent you'll do almost everything        
+        var points = [
+          new plugin.google.maps.LatLng(41.79883, 140.75675),
+          new plugin.google.maps.LatLng(41.799240000000005, 140.75875000000002),
+          new plugin.google.maps.LatLng(41.797650000000004, 140.75905),
+          new plugin.google.maps.LatLng(41.79637, 140.76018000000002),
+          new plugin.google.maps.LatLng(41.79567, 140.75845),
+          new plugin.google.maps.LatLng(41.794470000000004, 140.75714000000002),
+          new plugin.google.maps.LatLng(41.795010000000005, 140.75611),
+          new plugin.google.maps.LatLng(41.79477000000001, 140.75484),
+          new plugin.google.maps.LatLng(41.79576, 140.75475),
+          new plugin.google.maps.LatLng(41.796150000000004, 140.75364000000002),
+          new plugin.google.maps.LatLng(41.79744, 140.75454000000002),
+          new plugin.google.maps.LatLng(41.79909000000001, 140.75465),
+          new plugin.google.maps.LatLng(41.79883, 140.75673)
+        ];
+        var latLngBounds = new plugin.google.maps.LatLngBounds(points);
 
-             if(Intent.hasOwnProperty('data')){
-               // Do something with the File
-             }else{
-               // this will happen in getCordovaIntent when the app starts and there's no
-               // active intent
-               //alert("The app was opened manually and there's not file to open");
-             }
-        };
-                
-        // Handle the intent when the app is open
-        // If the app is running in the background, this function
-        // will handle the opened file
-        window.plugins.intent.setNewIntentHandler(HandleIntent);
-
-        // Handle the intent when the app is not open
-        // This will be executed only when the app starts or wasn't active
-        // in the background
-        window.plugins.intent.getCordovaIntent(HandleIntent, function () {
-           //alert("Error: Cannot handle open with file intent");
+        map.addPolyline({
+          points: points,
+          'color' : '#AA00FF',
+          'width': 5,
+          'geodesic': false
         });
 
+        map.animateCamera({
+          'target' : latLngBounds
+        });
+        
       }, false);//end device ready
 
 })
