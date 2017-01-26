@@ -73,14 +73,6 @@ angular.module('starter.controllers', [])
 
   }//end initCompassWatch
 
-      document.addEventListener("deviceready", function() {
-        
-        initMap();
-        //keep device awake
-        window.plugins.insomnia.keepAwake();
-
-      }, false);//end device ready
-
 
       $scope.centerMap = function(){
         if(currPosition){ 
@@ -145,6 +137,20 @@ angular.module('starter.controllers', [])
       $scope.rotateMap = function(){
         $rootScope.settings.rotateMap = ($rootScope.settings.rotateMap) ? false : true;
       }
+
+
+
+
+      document.addEventListener("deviceready", function() {
+        
+        initMap();
+
+        $scope.startFollow();
+
+        //keep device awake
+        window.plugins.insomnia.keepAwake();
+
+      }, false);//end device ready
 
 })
 
