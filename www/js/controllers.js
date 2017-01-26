@@ -15,7 +15,7 @@ angular.module('starter.controllers', [])
   var locationWatchID;
 
   function getGeolocation(position){
-    var currPosition = new plugin.google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+    currPosition = new plugin.google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
       if(!currPosiMarker){
         map.addMarker({
@@ -82,9 +82,6 @@ angular.module('starter.controllers', [])
           map.setCenter(currPosition);
           map.setZoom(zoom);
         }
-        if(map){
-          navigator.geolocation.getCurrentPosition(getGeolocation);
-        }
       }//end centerMap
 
       $scope.startFollow = function(){
@@ -104,6 +101,9 @@ angular.module('starter.controllers', [])
             if($rootScope.settings.followGPS == false){
               $scope.msg = 'watch called - not following gps';
               $scope.$apply();
+
+              currPosition = new plugin.google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+
               return;
             }
 
@@ -229,6 +229,7 @@ angular.module('starter.controllers', [])
         getEntriesAtRoot: function() {
             var deferred = $q.defer();
             window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem) {
+                alert(fileSystem.name);
                 var directoryReader = fileSystem.root.createReader();
                 directoryReader.readEntries(function(entries) {
                     deferred.resolve(entries);
