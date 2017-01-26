@@ -181,6 +181,7 @@ angular.module('starter.controllers', [])
     $ionicPlatform.ready(function() {
         fs.getEntriesAtRoot().then(function(result) {
             $scope.files = result;
+            alert(result);
         }, function(error) {
             console.error(error);
         });
