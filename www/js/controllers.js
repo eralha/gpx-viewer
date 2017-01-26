@@ -21,6 +21,9 @@ angular.module('starter.controllers', [])
         currPosiMarker.setPosition(currPosition);
       }
 
+      $scope.msg = 'lat:'+position.coords.latitude+'lng:'+position.coords.longitude;
+      $scope.$apply();
+
       map.setCenter(currPosition);
       map.setZoom(zoom);
   }//end getGeolocation;
@@ -83,9 +86,18 @@ angular.module('starter.controllers', [])
           if(locationWatchID){
             navigator.geolocation.clearWatch(locationWatchID);
             locationWatchID = null;
+
+            $scope.msg = 'watch cleared';
+
             return;
           }
-          locationWatchID = navigator.geolocation.watchPosition(getGeolocation, null, { timeout: 500 });
+
+          $scope.msg = 'watch started';
+
+          locationWatchID = navigator.geolocation.watchPosition(getGeolocation, function(error){
+            $scope.msg = 'gps erro '+error.message;
+            $scope.$apply();
+          }, { timeout: 500 });
         }
       }
 
