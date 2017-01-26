@@ -2,6 +2,14 @@
   <ion-content>
 
 
+  <div ng-repeat="file in files">
+
+            <div ng-if="file.isFile">
+                {{file | json}}
+            </div>
+
+        </div>
+
     <ion-list>
         <div ng-repeat="file in files">
 
