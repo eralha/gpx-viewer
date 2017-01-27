@@ -30,9 +30,10 @@ appModule.controller('FilesCtrl', function($rootScope, $scope, $ionicPlatform, $
         }
 
         $scope.readFile = function(file) {
-          
+          /*
           alert(JSON.stringify(file));
           alert(cordova.file.applicationDirectory);
+          */
           
 
           window.resolveLocalFileSystemURL(file.nativeURL, function(fileEntry){
@@ -40,9 +41,11 @@ appModule.controller('FilesCtrl', function($rootScope, $scope, $ionicPlatform, $
                 var reader = new FileReader();
 
                 reader.onloadend = function(e) {
+                    /*
                     alert(this.result);
                     alert($);
                     alert($.xml2json);
+                    */
 
                     PathGenerator.parseXml(this.result);
 
