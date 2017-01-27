@@ -37,6 +37,10 @@ appModule.controller('FilesCtrl', function($rootScope, $scope, $ionicPlatform, $
           
 
           window.resolveLocalFileSystemURL(file.nativeURL, function(fileEntry){
+            var fail = function(error) {
+                alert(JSON.stringify(error));
+            };
+
             fileEntry.file(function(file) {
                 var reader = new FileReader();
 
@@ -65,8 +69,12 @@ appModule.controller('FilesCtrl', function($rootScope, $scope, $ionicPlatform, $
                     });
                 }
 
+                reader.onerror = function(error){
+                    alert(JSON.stringify(error));
+                }
+
                 reader.readAsText(file);
-            });
+            }, fail);
           });
         }
 
