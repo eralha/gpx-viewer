@@ -60,6 +60,8 @@ var appModule = angular.module('starter.controllers', [])
         zoom = position.zoom;
       }
     });
+
+    map.setMapTypeId(plugin.google.maps.MapTypeId.HYBRID);
   }
 
 
@@ -207,6 +209,8 @@ var appModule = angular.module('starter.controllers', [])
           }, function(marker) {
             endMarker = marker;
           });
+        } catch(err) {
+          alert(err.message);    
         }
 
         try {
