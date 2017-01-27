@@ -11,6 +11,16 @@ angular.module('starter.services', [])
 
   module.parseXml = function(xml){
     alert('parseXml');
+    alert(xml);
+
+    try {
+      var xmlDoc = $.parseXML( xml );
+      var $xml = $(xmlDoc);
+      alert($xml.find('trk trkseg trkpt').length);
+    }
+    catch(err) {
+      alert(err.message);    
+    }
 
     try {
         var dataJson = $.xml2json(xml);
