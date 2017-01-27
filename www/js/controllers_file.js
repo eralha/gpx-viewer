@@ -30,16 +30,19 @@ appModule.controller('FilesCtrl', function($rootScope, $scope, $ionicPlatform, $
         }
 
         $scope.readFile = function(file) {
-          /*
+          
           alert(JSON.stringify(file));
           alert(cordova.file.applicationDirectory);
-          */
+          
 
           window.resolveLocalFileSystemURL(file.nativeURL, function(fileEntry){
             fileEntry.file(function(file) {
                 var reader = new FileReader();
 
                 reader.onloadend = function(e) {
+                    alert(this.result);
+                    alert($.xml2json);
+
                     PathGenerator.parseXml(this.result);
 
                     var alertPopup = $ionicPopup.alert({
