@@ -41,6 +41,7 @@ appModule.controller('FilesCtrl', function($rootScope, $scope, $ionicPlatform, $
 
                 reader.onloadend = function(e) {
                     alert(this.result);
+                    alert($);
                     alert($.xml2json);
 
                     PathGenerator.parseXml(this.result);
