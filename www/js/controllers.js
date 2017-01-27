@@ -5,6 +5,7 @@ var appModule = angular.module('starter.controllers', [])
   $rootScope.settings = {};
   $rootScope.settings.followGPS = false;
   $rootScope.settings.rotateMap = false;
+  $rootScope.settings.isCentering = false;
 
   $scope.settings = $rootScope.settings;
 
@@ -67,11 +68,11 @@ var appModule = angular.module('starter.controllers', [])
 
   function initCompassWatch(){
     var options = {
-        frequency: 500
+        frequency: 200
     }; // Update every 3 seconds
 
     var watchID = navigator.compass.watchHeading(function(heading){
-      if(map && $rootScope.settings.rotateMap){
+      if(map && $rootScope.settings.rotateMap && $rootScope.settings.isCentering == false){
         map.moveCamera({
           'zoom' : zoom,
           'bearing': heading.magneticHeading
@@ -84,10 +85,16 @@ var appModule = angular.module('starter.controllers', [])
 
       $scope.centerMap = function(){
         if(currPosition){ 
+          $rootScope.settings.isCentering = true;
+
           map.animateCamera({
             'target' : currPosition,
             'duration' : 500
           });
+
+          setTimeout(function(){
+            $rootScope.settings.isCentering = false;
+          }, 500);
         }
       }//end centerMap
 
