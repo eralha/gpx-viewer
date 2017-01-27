@@ -186,6 +186,13 @@ var appModule = angular.module('starter.controllers', [])
       //when a GPX file is ready to be drawn on map
       $rootScope.$on("FileLoaded", onGPXFileLoaded);
 
+
+      /*MOCK READ OFF GPX FILE
+      $.get('caparide-manique.gpx', function(xml){
+         PathGenerator.parseXml(xml);
+        });
+      */
+
 })
 
 .controller('ChatsCtrl', function($scope, Chats) {

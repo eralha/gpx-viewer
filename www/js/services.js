@@ -12,7 +12,9 @@ angular.module('starter.services', [])
   module.parseXml = function(xml){
     alert('parseXml');
 
-    var dataJson = $.parseXML( xml );
+    var xmlDoc = $.parseXML(xml);
+    var $xml = $(xmlDoc);
+
     var points = new Array();
     var trkName = $xml.find('trk trkseg name').text();
     var trks = $xml.find('trk trkseg trkpt');
@@ -22,8 +24,6 @@ angular.module('starter.services', [])
 
     try {
 
-      var xmlDoc = $.parseXML( xml );
-      var $xml = $(xmlDoc);
       $(trks).each(function(){
         points.push(new plugin.google.maps.LatLng($(this).attr('lat'), $(this).attr('lon')));
       });
