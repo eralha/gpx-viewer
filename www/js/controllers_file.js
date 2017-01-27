@@ -56,6 +56,10 @@ appModule.controller('FilesCtrl', function($rootScope, $scope, $ionicPlatform, $
                          template: PathGenerator.trk.name
                        });
 
+                    setTimeout(function(){
+                        alertPopup.close();
+                    }, 2000);
+
                     alertPopup.then(function(res) {
                         $rootScope.$emit("FileLoaded", PathGenerator.trk);
                     });
