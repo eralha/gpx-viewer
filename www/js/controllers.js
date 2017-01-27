@@ -39,9 +39,10 @@ var appModule = angular.module('starter.controllers', [])
   function onMapReady() {
     //var watchID = navigator.geolocation.watchPosition(getGeolocation, null, { timeout: 500 });
 
-    //navigator.geolocation.getCurrentPosition(getGeolocation);
+    navigator.geolocation.getCurrentPosition(getGeolocation);
     initCompassWatch();
 
+    /*
     var points = [
           new plugin.google.maps.LatLng(41.79883, 140.75675),
           new plugin.google.maps.LatLng(41.799240000000005, 140.75875000000002),
@@ -69,6 +70,7 @@ var appModule = angular.module('starter.controllers', [])
         map.animateCamera({
           'target' : latLngBounds
         });
+        */
   }//end onMapReady
 
 
