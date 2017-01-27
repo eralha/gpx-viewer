@@ -110,7 +110,8 @@ var appModule = angular.module('starter.controllers', [])
       $scope.centerMap = function(){
         if(currPosition){ 
           map.animateCamera({
-            'target' : currPosition
+            'target' : currPosition,
+            'duration' : 500
           });
         }
       }//end centerMap
@@ -157,7 +158,8 @@ var appModule = angular.module('starter.controllers', [])
         zoom = (zoom > 19)? 19 : zoom;
         if(map){
           map.animateCamera({
-            'zoom' : zoom
+            'zoom' : zoom,
+            'duration' : 500
           });
         }
       }
@@ -167,7 +169,8 @@ var appModule = angular.module('starter.controllers', [])
         zoom = (zoom < 3)? 3 : zoom;
         if(map){
           map.animateCamera({
-            'zoom' : zoom
+            'zoom' : zoom,
+            'duration' : 500
           });
         }
       }
