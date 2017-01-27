@@ -11,36 +11,29 @@ angular.module('starter.services', [])
 
   module.parseXml = function(xml){
     alert('parseXml');
-    alert(xml);
+
+    var dataJson = $.parseXML( xml );
+    var points = new Array();
+    var trkName = $xml.find('trk trkseg name').text();
+    var trks = $xml.find('trk trkseg trkpt');
+
+    alert(trkName);
+    alert(trks.length);
 
     try {
+
       var xmlDoc = $.parseXML( xml );
       var $xml = $(xmlDoc);
-      alert($xml.find('trk trkseg trkpt').length);
-    }
-    catch(err) {
-      alert(err.message);    
-    }
+      $(trks).each(function(){
+        points.push(new plugin.google.maps.LatLng($(this).attr('lat'), $(this).attr('lon')));
+      });
 
-    try {
-        var dataJson = $.xml2json(xml);
-        var points = new Array();
-        var trkName = dataJson.trk.name;
-        var trks = dataJson.trk.trkseg.trkpt;
+      module.trk = {
+        name : trkName,
+        points : points
+      };
 
-        alert(dataJson);
-
-        for(i in trks){
-          points.push(new plugin.google.maps.LatLng(trks[i].lat, trks[i].lon));
-        }
-
-        alert('points: '+points.length);
-        alert(points);
-
-        module.trk = {
-          name : trkName,
-          points : points
-        };
+      alert('points: '+points.length);
     }
     catch(err) {
       alert(err.message);    
