@@ -14,6 +14,8 @@ var appModule = angular.module('starter.controllers', [])
   var zoom = 13;
   var locationWatchID;
   var trackOverLay;
+  var startMarker;
+  var endMarker;
 
   function getGeolocation(position){
     currPosition = new plugin.google.maps.LatLng(position.coords.latitude, position.coords.longitude);
@@ -172,6 +174,9 @@ var appModule = angular.module('starter.controllers', [])
         if(trackOverLay){ 
           trackOverLay.remove(); 
           trackOverLay = null;
+
+          startMarker.remove();
+          endMarker.remove();
         }
 
         var latLngBounds = new plugin.google.maps.LatLngBounds(trk.points);
@@ -185,6 +190,24 @@ var appModule = angular.module('starter.controllers', [])
 
           trackOverLay = polyline;
         });
+
+        // start and finish markers
+        try{
+          map.addMarker({
+            'position': trk.points[0],
+            'title': "Start"
+          }, function(marker) {
+            startMarker = marker;
+            startMarker.showInfoWindow();
+          });
+
+          map.addMarker({
+            'position': trk.points[trk.points.length - 1],
+            'title': "End"
+          }, function(marker) {
+            endMarker = marker;
+          });
+        }
 
         try {
           map.animateCamera({
