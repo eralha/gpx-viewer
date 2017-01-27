@@ -1,6 +1,6 @@
 
 
-appModule.controller('FilesCtrl', function($rootScope, $scope, $ionicPlatform, $fileFactory) {
+appModule.controller('FilesCtrl', function($rootScope, $scope, $ionicPlatform, $fileFactory, PathGenerator, $ionicPopup) {
   $scope.settings = $rootScope.settings;
 
   var fs = new $fileFactory();
@@ -30,15 +30,26 @@ appModule.controller('FilesCtrl', function($rootScope, $scope, $ionicPlatform, $
         }
 
         $scope.readFile = function(file) {
+          /*
           alert(JSON.stringify(file));
           alert(cordova.file.applicationDirectory);
+          */
 
           window.resolveLocalFileSystemURL(file.nativeURL, function(fileEntry){
             fileEntry.file(function(file) {
                 var reader = new FileReader();
 
                 reader.onloadend = function(e) {
-                    alert("Text is: "+this.result);
+                    PathGenerator.parseXml(this.result);
+
+                    var alertPopup = $ionicPopup.alert({
+                         title: 'Track Loaded',
+                         template: PathGenerator.trk.name
+                       });
+
+                    alertPopup.then(function(res) {
+                        $rootScope.$emit("FileLoaded", PathGenerator.trk);
+                    });
                 }
 
                 reader.readAsText(file);
