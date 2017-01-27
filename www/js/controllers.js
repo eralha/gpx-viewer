@@ -44,6 +44,8 @@ var appModule = angular.module('starter.controllers', [])
 
     navigator.geolocation.getCurrentPosition(getGeolocation);
     initCompassWatch();
+
+    map.setMapTypeId(plugin.google.maps.MapTypeId.HYBRID);
   }//end onMapReady
 
 
@@ -60,8 +62,6 @@ var appModule = angular.module('starter.controllers', [])
         zoom = position.zoom;
       }
     });
-
-    map.setMapTypeId(plugin.google.maps.MapTypeId.HYBRID);
   }
 
 
