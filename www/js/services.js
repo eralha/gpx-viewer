@@ -16,7 +16,7 @@ angular.module('starter.services', [])
     var $xml = $(xmlDoc);
 
     var points = new Array();
-    var trkName = $xml.find('trk trkseg name').text();
+    var trkName = $xml.find('trk name').text();
     var trks = $xml.find('trk trkseg trkpt');
 
     alert(trkName);
@@ -33,7 +33,6 @@ angular.module('starter.services', [])
         points : points
       };
 
-      alert('points: '+points.length);
     }
     catch(err) {
       alert(err.message);    

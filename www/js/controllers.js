@@ -13,6 +13,7 @@ var appModule = angular.module('starter.controllers', [])
   var currPosiMarker;
   var zoom = 13;
   var locationWatchID;
+  var trackOverLay;
 
   function getGeolocation(position){
     currPosition = new plugin.google.maps.LatLng(position.coords.latitude, position.coords.longitude);
@@ -168,20 +169,32 @@ var appModule = angular.module('starter.controllers', [])
         $rootScope.settings.rotateMap = false;
         $rootScope.settings.followGPS = false;
 
+        if(trackOverLay){ 
+          trackOverLay.remove(); 
+          trackOverLay = null;
+        }
+
         var latLngBounds = new plugin.google.maps.LatLngBounds(trk.points);
 
         map.addPolyline({
           points: trk.points,
           'color' : '#AA00FF',
-          'width': 5,
+          'width': 3,
           'geodesic': false
+        }, function(polyline) {
+
+          trackOverLay = polyline;
         });
 
-        map.animateCamera({
-          'target' : latLngBounds,
-          'bearing' : 0,
-          'duration' : 1000
-        });
+        try {
+          map.animateCamera({
+            'target' : latLngBounds,
+            'bearing' : 0,
+            'duration' : 1000
+          });
+        } catch(err) {
+          alert(err.message);    
+        }
       }
       //when a GPX file is ready to be drawn on map
       $rootScope.$on("FileLoaded", onGPXFileLoaded);
