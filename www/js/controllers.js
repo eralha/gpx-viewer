@@ -39,8 +39,36 @@ var appModule = angular.module('starter.controllers', [])
   function onMapReady() {
     //var watchID = navigator.geolocation.watchPosition(getGeolocation, null, { timeout: 500 });
 
-    navigator.geolocation.getCurrentPosition(getGeolocation);
+    //navigator.geolocation.getCurrentPosition(getGeolocation);
     initCompassWatch();
+
+    var points = [
+          new plugin.google.maps.LatLng(41.79883, 140.75675),
+          new plugin.google.maps.LatLng(41.799240000000005, 140.75875000000002),
+          new plugin.google.maps.LatLng(41.797650000000004, 140.75905),
+          new plugin.google.maps.LatLng(41.79637, 140.76018000000002),
+          new plugin.google.maps.LatLng(41.79567, 140.75845),
+          new plugin.google.maps.LatLng(41.794470000000004, 140.75714000000002),
+          new plugin.google.maps.LatLng(41.795010000000005, 140.75611),
+          new plugin.google.maps.LatLng(41.79477000000001, 140.75484),
+          new plugin.google.maps.LatLng(41.79576, 140.75475),
+          new plugin.google.maps.LatLng(41.796150000000004, 140.75364000000002),
+          new plugin.google.maps.LatLng(41.79744, 140.75454000000002),
+          new plugin.google.maps.LatLng(41.79909000000001, 140.75465),
+          new plugin.google.maps.LatLng(41.79883, 140.75673)
+        ];
+        var latLngBounds = new plugin.google.maps.LatLngBounds(points);
+
+        map.addPolyline({
+          points: points,
+          'color' : '#AA00FF',
+          'width': 5,
+          'geodesic': false
+        });
+
+        map.animateCamera({
+          'target' : latLngBounds
+        });
   }//end onMapReady
 
 
@@ -153,34 +181,6 @@ var appModule = angular.module('starter.controllers', [])
         //keep device awake
         window.plugins.insomnia.keepAwake();
 
-        var points = [
-          new plugin.google.maps.LatLng(41.79883, 140.75675),
-          new plugin.google.maps.LatLng(41.799240000000005, 140.75875000000002),
-          new plugin.google.maps.LatLng(41.797650000000004, 140.75905),
-          new plugin.google.maps.LatLng(41.79637, 140.76018000000002),
-          new plugin.google.maps.LatLng(41.79567, 140.75845),
-          new plugin.google.maps.LatLng(41.794470000000004, 140.75714000000002),
-          new plugin.google.maps.LatLng(41.795010000000005, 140.75611),
-          new plugin.google.maps.LatLng(41.79477000000001, 140.75484),
-          new plugin.google.maps.LatLng(41.79576, 140.75475),
-          new plugin.google.maps.LatLng(41.796150000000004, 140.75364000000002),
-          new plugin.google.maps.LatLng(41.79744, 140.75454000000002),
-          new plugin.google.maps.LatLng(41.79909000000001, 140.75465),
-          new plugin.google.maps.LatLng(41.79883, 140.75673)
-        ];
-        var latLngBounds = new plugin.google.maps.LatLngBounds(points);
-
-        map.addPolyline({
-          points: points,
-          'color' : '#AA00FF',
-          'width': 5,
-          'geodesic': false
-        });
-
-        map.animateCamera({
-          'target' : latLngBounds
-        });
-        
       }, false);//end device ready
 
 })
