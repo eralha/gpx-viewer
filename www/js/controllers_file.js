@@ -1,6 +1,6 @@
 
 
-appModule.controller('FilesCtrl', function($rootScope, $scope, $ionicPlatform, $fileFactory, PathGenerator, $ionicPopup) {
+appModule.controller('FilesCtrl', function($rootScope, $scope, $ionicPlatform, $fileFactory, PathGenerator, $ionicPopup, $state) {
   $scope.settings = $rootScope.settings;
 
   var fs = new $fileFactory();
@@ -48,6 +48,8 @@ appModule.controller('FilesCtrl', function($rootScope, $scope, $ionicPlatform, $
                     */
 
                     PathGenerator.parseXml(this.result);
+
+                    $state.go('tab.dash');
 
                     var alertPopup = $ionicPopup.alert({
                          title: 'Track Loaded',

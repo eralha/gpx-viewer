@@ -10,8 +10,6 @@ angular.module('starter.services', [])
   var module = {};
 
   module.parseXml = function(xml){
-    alert('parseXml');
-
     var xmlDoc = $.parseXML(xml);
     var $xml = $(xmlDoc);
 
@@ -19,8 +17,10 @@ angular.module('starter.services', [])
     var trkName = $xml.find('trk name').text();
     var trks = $xml.find('trk trkseg trkpt');
 
+    /*
     alert(trkName);
     alert(trks.length);
+    */
 
     try {
 
