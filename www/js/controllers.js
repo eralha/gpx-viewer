@@ -222,7 +222,7 @@ var appModule = angular.module('starter.controllers', [])
 
           map.addMarker({
             'position': trk.points[trk.points.length - 1],
-            'title': "End"+trk.length+"km"
+            'title': "End - "+trk.length+"km"
           }, function(marker) {
             endMarker = marker;
           });
