@@ -42,10 +42,8 @@ angular.module('starter.services', [])
         name : trkName,
         points : points,
         wpts : wpts,
-        length : module.inKm(points)
+        length : Math.round(module.inKm(points) * 100) / 100
       };
-
-      alert(module.trk.length);
 
     }
     catch(err) {
