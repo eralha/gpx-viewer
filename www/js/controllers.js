@@ -17,6 +17,7 @@ var appModule = angular.module('starter.controllers', [])
   var trackOverLay;
   var startMarker;
   var endMarker;
+  var waypoints = new Array();
 
   function getGeolocation(position){
     currPosition = new plugin.google.maps.LatLng(position.coords.latitude, position.coords.longitude);
@@ -186,6 +187,15 @@ var appModule = angular.module('starter.controllers', [])
 
           startMarker.remove();
           endMarker.remove();
+
+          //remove todos os waypoints
+          if(waypoints.length > 0){
+            for(i in waypoints){
+              waypoints[i].remove();
+            }//end for
+
+            waypoints = new Array();
+          }//end if
         }
 
         var latLngBounds = new plugin.google.maps.LatLngBounds(trk.points);
@@ -216,6 +226,17 @@ var appModule = angular.module('starter.controllers', [])
           }, function(marker) {
             endMarker = marker;
           });
+
+          //add waypoints to the map
+          for(i in trk.wpts){
+            map.addMarker({
+              'position': trk.wpts[i].coord,
+              'title': trk.wpts[i].name,
+              'snippet': trk.wpts[i].cmt
+            }, function(marker) {
+              waypoints.push(marker);
+            });
+          }//end for
         } catch(err) {
           alert(err.message);    
         }
@@ -229,7 +250,8 @@ var appModule = angular.module('starter.controllers', [])
         } catch(err) {
           alert(err.message);    
         }
-      }
+      }//end onGPXFileLoaded
+
       //when a GPX file is ready to be drawn on map
       $rootScope.$on("FileLoaded", onGPXFileLoaded);
 
