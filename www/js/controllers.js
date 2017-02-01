@@ -261,7 +261,7 @@ var appModule = angular.module('starter.controllers', [])
 
         setTimeout(function(){
           $rootScope.settings.isCentering = false;
-        }, 500);
+        }, 100);
 
         map.moveCamera({
           'target' : point

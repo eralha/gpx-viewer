@@ -1,8 +1,7 @@
-appModule.controller('AccountCtrl', function($rootScope, $scope, $ionicPlatform, $fileFactory, PathGenerator) {
+appModule.controller('AccountCtrl', function($rootScope, $scope, $ionicPlatform, $fileFactory, PathGenerator, $state) {
   $scope.settings = $rootScope.settings;
 
   function getPointAtKm(km){
-    console.log(km);
     var kms = PathGenerator.trk.lengthPoints;
     var index;
 
@@ -66,7 +65,11 @@ appModule.controller('AccountCtrl', function($rootScope, $scope, $ionicPlatform,
     runChartData(PathGenerator.trk);
   });
 
-  /*
+  if(PathGenerator.trk){
+    runChartData(PathGenerator.trk);
+  }
+
+  
   $.ajax({
       url: 'caparide-manique.gpx',
       dataType: 'text',
@@ -78,6 +81,6 @@ appModule.controller('AccountCtrl', function($rootScope, $scope, $ionicPlatform,
         runChartData(PathGenerator.trk);
       }
     });
-*/
+
     
 });
