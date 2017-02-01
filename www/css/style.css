@@ -40,4 +40,7 @@
 
 .bt-square.active { background-color: #e42313 !important; }
 
-.c-trak__chart { margin-top: 20px; }
+.c-trak__chart { 
+	width: 100% !important;
+	margin-top: 20px; 
+}
