@@ -255,6 +255,19 @@ var appModule = angular.module('starter.controllers', [])
       //when a GPX file is ready to be drawn on map
       $rootScope.$on("FileLoaded", onGPXFileLoaded);
 
+      //when a user click on a chart point center the map
+      $rootScope.$on("MapSetCenter", function(e, point){
+        $rootScope.settings.isCentering = true;
+
+        setTimeout(function(){
+          $rootScope.settings.isCentering = false;
+        }, 500);
+
+        map.moveCamera({
+          'target' : point
+        });
+      });
+
 
       /*MOCK READ OFF GPX FILE
       $.get('caparide-manique.gpx', function(xml){

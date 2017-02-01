@@ -1,6 +1,22 @@
 appModule.controller('AccountCtrl', function($rootScope, $scope, $ionicPlatform, $fileFactory, PathGenerator) {
   $scope.settings = $rootScope.settings;
 
+  function getPointAtKm(km){
+    console.log(km);
+    var kms = PathGenerator.trk.lengthPoints;
+    var index;
+
+    for(i in kms){
+        if(kms[i] == km){ 
+            index = i;
+            console.log(kms[i] == km, i);
+        }
+    }
+
+    //console.log(index, PathGenerator.trk.points[index]);
+
+    return PathGenerator.trk.points[index];
+  }
 
   function runChartData(data){
     Highcharts.chart($('#chart').get(0), {
@@ -30,7 +46,17 @@ appModule.controller('AccountCtrl', function($rootScope, $scope, $ionicPlatform,
             series: [{
                 type: 'area',
                 name: 'Track Elevation',
-                data: data.elevationPoints
+                data: data.elevationPoints,
+                point: {
+                events: {
+                        click: function(e){
+                            var point = getPointAtKm(this.category);
+
+                            $state.go('tab.dash');
+                            $rootScope.$emit("MapSetCenter", point);
+                        }
+                    }
+                }
             }]
         });
   }
@@ -51,6 +77,7 @@ appModule.controller('AccountCtrl', function($rootScope, $scope, $ionicPlatform,
 
         runChartData(PathGenerator.trk);
       }
-    });*/
+    });
+*/
     
 });
