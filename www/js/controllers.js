@@ -263,7 +263,10 @@ var appModule = angular.module('starter.controllers', [])
           $rootScope.settings.isCentering = false;
         }, 100);
 
+        zoom = 18;
+
         map.moveCamera({
+          'zoom' : zoom,
           'target' : point
         });
       });
