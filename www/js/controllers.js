@@ -278,10 +278,4 @@ var appModule = angular.module('starter.controllers', [])
     Chats.remove(chat);
   };
 })
-
-
-
-.controller('AccountCtrl', function($rootScope, $scope, $ionicPlatform, $fileFactory) {
-  $scope.settings = $rootScope.settings;
-})
 ;

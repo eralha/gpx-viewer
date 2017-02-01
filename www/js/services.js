@@ -14,6 +14,7 @@ angular.module('starter.services', [])
     var $xml = $(xmlDoc);
 
     var points = new Array();
+    var elevation = new Array();
     var wpts = new Array();
     var trkName = $xml.find('trk name').text();
     var trks = $xml.find('trk trkseg trkpt');
@@ -27,7 +28,8 @@ angular.module('starter.services', [])
     try {
 
       $(wpt).each(function(){
-        var coord = new plugin.google.maps.LatLng($(this).attr('lat'), $(this).attr('lon'));
+        //var coord = new plugin.google.maps.LatLng($(this).attr('lat'), $(this).attr('lon'));
+        var coord = {lat: $(this).attr('lat'), lng: $(this).attr('lon')};
         var name = $(this).find('name').text();
         var cmt = $(this).find('cmt').text();
 
@@ -35,14 +37,20 @@ angular.module('starter.services', [])
       });
 
       $(trks).each(function(){
-        points.push(new plugin.google.maps.LatLng($(this).attr('lat'), $(this).attr('lon')));
+        //points.push(new plugin.google.maps.LatLng($(this).attr('lat'), $(this).attr('lon')));
+        points.push({lat: $(this).attr('lat'), lng: $(this).attr('lon')});
+        elevation.push(parseFloat($(this).find('ele').text()));
       });
+
+      var length = module.inKm(points);
 
       module.trk = {
         name : trkName,
         points : points,
         wpts : wpts,
-        length : Math.round(module.inKm(points) * 100) / 100
+        length : Math.round(length.dist * 100) / 100,
+        lengthPoints: length.distPoints,
+        elevationPoints : elevation
       };
 
     }
@@ -61,15 +69,21 @@ angular.module('starter.services', [])
       return f * 6378.137; 
   }
 
-  module.inKm = function(n){ 
+  module.inKm = function(n){
+    var distPoints = new Array();
       var a = n, 
           len = n.length, 
           dist = 0; 
 
+    //start at 0
+    distPoints.push(dist);
+
       for (var i=0; i < len-1; i++) { 
          dist += module.kmTo(a[i], a[i+1]); 
+
+         distPoints.push(Math.round(dist * 100) / 100);
       }
-      return dist; 
+      return {dist: dist, distPoints: distPoints}; 
   }
 
 
