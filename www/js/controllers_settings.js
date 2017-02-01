@@ -69,7 +69,7 @@ appModule.controller('AccountCtrl', function($rootScope, $scope, $ionicPlatform,
     runChartData(PathGenerator.trk);
   }
 
-  
+  /*
   $.ajax({
       url: 'caparide-manique.gpx',
       dataType: 'text',
@@ -81,6 +81,7 @@ appModule.controller('AccountCtrl', function($rootScope, $scope, $ionicPlatform,
         runChartData(PathGenerator.trk);
       }
     });
+*/
 
     
 });
