@@ -1,25 +1,17 @@
-Ionic App Base
+GPX Viewer
 =====================
 
-A starting project for Ionic that optionally supports using custom SCSS.
+A phonegap build project, this is an app to read and navigate GPX files.
 
-## Using this project
+You can donwload GPX files on a website lik <a href="https://www.wikiloc.com/" target="_blank">https://www.wikiloc.com/</a>.
 
-We recommend using the [Ionic CLI](https://github.com/driftyco/ionic-cli) to create new Ionic projects that are based on this project but use a ready-made starter template.
+The app will load a GPX file stored on your phone, and draw the path on the google maps, to navigate go to settings tab and turn on, follow gps and rotate map.
+Then the app will start centering the map on you GPS position, and rotating the map according to compass information.
 
-For example, to start a new Ionic project with the default tabs interface, make sure the `ionic` utility is installed:
+## Building the app
 
-```bash
-$ npm install -g ionic
-```
+We recommend using the <a href="https://build.phonegap.com/" target="_blank">phonegap build</a> service since the config is meant to be built there.
 
-Then run: 
+## Why this?
 
-```bash
-$ ionic start myProject tabs
-```
-
-More info on this can be found on the Ionic [Getting Started](http://ionicframework.com/getting-started) page and the [Ionic CLI](https://github.com/driftyco/ionic-cli) repo.
-
-## Issues
-Issues have been disabled on this repo, if you do find an issue or have a question consider posting it on the [Ionic Forum](http://forum.ionicframework.com/).  Or else if there is truly an error, follow our guidelines for [submitting an issue](http://ionicframework.com/submit-issue/) to the main Ionic repository.
+I build this app because i couldn't find any free app that fulfilled my adventure riding needs, i needed an app that updated my GPS position every second, and that rotate the map with compass information. 
