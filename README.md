@@ -3,7 +3,7 @@ GPX Viewer
 
 A phonegap build project, this is an app to read and navigate GPX files.
 
-You can donwload GPX files on a website lik <a href="https://www.wikiloc.com/" target="_blank">https://www.wikiloc.com/</a>.
+You can donwload GPX files on a website like <a href="https://www.wikiloc.com/" target="_blank">https://www.wikiloc.com/</a>.
 
 The app will load a GPX file stored on your phone, and draw the path on the google maps, to navigate go to settings tab and turn on, follow gps and rotate map.
 Then the app will start centering the map on you GPS position, and rotating the map according to compass information.
